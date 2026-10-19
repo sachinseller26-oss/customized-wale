@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personalised Acrylic Photo Frame – Customized Wale</title>
+  <meta name="description" content="Upload your photo and create a personalised acrylic photo frame. Choose shape and size, preview it live and order online.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-row" style="justify-content: space-between">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">CW</span>
+        <span class="logo-text">Customized<span> Wale</span></span>
+      </a>
+      <nav class="header-nav" aria-label="Account">
+        <a href="#" class="nav-link">Track order</a>
+        <a href="#" class="nav-link">Login</a>
+        <a href="#" class="nav-link cart-btn">Cart (<span class="cart-count">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <nav class="container breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="index.html#categories">Photo Frames</a><span aria-hidden="true">/</span>
+      <strong>Acrylic Photo Frame</strong>
+    </nav>
+
+    <section class="container pdp">
+      <!-- LEFT: live preview -->
+      <div class="pdp-gallery">
+        <div class="stage">
+          <div class="frame" id="frame">
+            <div class="frame-empty" id="frame-empty">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8A7B6C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg>
+              Your photo will appear here
+            </div>
+            <img id="frame-img" alt="Preview of your uploaded photo" hidden>
+            <div class="frame-caption" id="frame-caption"></div>
+          </div>
+        </div>
+        <div class="preview-note" id="preview-note">Live preview</div>
+        <!-- EDIT: replace with real product photos -->
+        <div class="thumbs">
+          <div class="ph" style="background: var(--t1)">[On wall]</div>
+          <div class="ph" style="background: var(--t2)">[On table]</div>
+          <div class="ph" style="background: var(--t3)">[Close-up]</div>
+          <div class="ph" style="background: var(--t4)">[In gift box]</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: options -->
+      <div class="pdp-info">
+        <div>
+          <span class="pill">Bestseller</span>
+          <h1>Personalised Acrylic Photo Frame</h1>
+          <div class="rating"><span class="stars" aria-hidden="true">★★★★★</span>[Rating] · [No. of reviews]</div>
+        </div>
+
+        <div class="price-row">
+          <span class="big-price" id="price">₹0</span>
+          <span style="font-size: 14px; color: var(--muted)">Inclusive of all taxes</span>
+        </div>
+
+        <div>
+          <span class="option-label">1. Choose shape</span>
+          <div class="chips" id="shape-chips"></div>
+        </div>
+
+        <div>
+          <span class="option-label">2. Choose size</span>
+          <div class="size-grid" id="size-grid"></div>
+        </div>
+
+        <div>
+          <span class="option-label">3. Upload your photo</span>
+          <label class="upload" id="upload-box" for="photo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+            <b id="upload-title">Tap to upload photo</b>
+            <small id="upload-sub">JPG or PNG, high resolution recommended</small>
+          </label>
+          <input type="file" id="photo" accept="image/jpeg,image/png" class="sr-only">
+        </div>
+
+        <div>
+          <label class="option-label" for="caption">4. Add a name or message <span>(optional)</span></label>
+          <input class="text-input" id="caption" type="text" maxlength="40" placeholder="e.g. Happy Anniversary, Riya &amp; Arjun">
+        </div>
+
+        <div class="buy-row">
+          <div class="qty">
+            <button type="button" id="qty-minus" aria-label="Decrease quantity">−</button>
+            <span id="qty" aria-live="polite">1</span>
+            <button type="button" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="btn btn-outline" id="add-to-cart">Add to cart</button>
+          <button type="button" class="btn btn-primary" id="buy-now">Buy now</button>
+        </div>
+        <div class="alert" id="photo-alert" role="alert" hidden>Please upload your photo before adding to cart.</div>
+
+        <div class="box">
+          <label for="pin" style="font-weight: 700; font-size: 15px">Check delivery</label>
+          <div class="pin-row">
+            <input id="pin" type="text" inputmode="numeric" maxlength="6" placeholder="Enter pincode">
+            <button type="button" id="pin-check">Check</button>
+          </div>
+          <div id="pin-result" style="font-size: 14px; font-weight: 600" aria-live="polite"></div>
+          <div class="ticks">
+            <span>✓ Preview before you pay</span><span>✓ UPI, cards &amp; COD</span><span>✓ [Delivery time]</span><span>✓ [Return policy]</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 48px">
+      <div class="info-grid">
+        <div class="info-card">
+          <h2>About this frame</h2>
+          <p>Your photo is printed directly on premium clear acrylic for a glossy, glass-like finish with vivid colours. Comes ready to hang on the wall or stand on a table.</p>
+        </div>
+        <div class="info-card">
+          <h2>Specifications</h2>
+          <div class="spec"><span>Material</span><b>[e.g. 3 mm / 5 mm acrylic]</b></div>
+          <div class="spec"><span>Finish</span><b>Glossy</b></div>
+          <div class="spec"><span>Mounting</span><b>Wall + table stand</b></div>
+          <div class="spec"><span>Size</span><b id="spec-size">—</b></div>
+          <div class="spec"><span>Packaging</span><b>[Your packaging]</b></div>
+        </div>
+        <div class="info-card">
+          <h2>FAQs</h2>
+          <details class="faq"><summary>What photo quality do I need?</summary><p>A clear, well-lit photo from a phone camera works well. Avoid screenshots.</p></details>
+          <details class="faq"><summary>How long does delivery take?</summary><p>[Your delivery time]</p></details>
+          <details class="faq"><summary>Can I see the design before printing?</summary><p>Yes — the preview shows your photo on the frame before you pay.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 24px">
+      <div class="section-head"><h2 style="font-size: 34px">You may also like</h2></div>
+      <div class="product-grid" id="related-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="padding-top: 28px; border-top: 0">
+      <span>© <span id="year">2026</span> Customized Wale</span>
+      <span>[Phone] · [WhatsApp] · [Email]</span>
+    </div>
+  </footer>
+
+  <a class="wa-float wa-link" data-msg="Hi Customized Wale, I have a question about the Acrylic Photo Frame." href="#" aria-label="Chat with us on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
+  </a>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

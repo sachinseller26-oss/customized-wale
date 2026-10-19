@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personalise Your Gift – Customized Wale</title>
+  <meta name="description" content="Pick a design, upload your photo, add a name and order your personalised gift from Customized Wale.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- One page for every product. The product shown comes from the link, e.g. customize.html?item=mugs.
+       Edit products, prices and designs in script.js (PRODUCT_PAGES and DESIGNS). -->
+
+  <header class="site-header">
+    <div class="container header-row" style="justify-content: space-between">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">CW</span>
+        <span class="logo-text">Customized<span> Wale</span></span>
+      </a>
+      <nav class="header-nav" aria-label="Account">
+        <a href="#" class="nav-link">Track order</a>
+        <a href="#" class="nav-link">Login</a>
+        <a href="#" class="nav-link cart-btn">Cart (<span class="cart-count">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <nav class="container breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>
+      <strong id="crumb">Personalise</strong>
+    </nav>
+
+    <!-- PAGE HEAD -->
+    <section class="container listing-head">
+      <div>
+        <h1 id="page-title">Personalise</h1>
+        <p id="page-intro"></p>
+      </div>
+      <ol class="design-steps" id="design-steps" aria-label="How it works">
+        <li><b>1</b> Pick a design</li>
+        <li><b>2</b> Upload photo</li>
+        <li><b>3</b> Buy</li>
+      </ol>
+    </section>
+
+    <!-- OTHER PRODUCTS -->
+    <nav class="container product-switch" id="product-switch" aria-label="Other products to personalise"></nav>
+
+    <!-- PHONE PICKER (mobile cases only): brand → model → designs -->
+    <section class="container phone-picker" id="phone-picker" hidden></section>
+
+    <!-- DESIGN GALLERY -->
+    <section class="container" id="gallery">
+      <div class="chips style-tabs" id="style-tabs" role="group" aria-label="Choose a style" hidden></div>
+      <div class="chips design-tabs" id="design-tabs" role="group" aria-label="Filter designs by occasion"></div>
+      <p class="design-count" id="design-count" aria-live="polite"></p>
+      <div class="product-grid" id="design-grid"></div>
+    </section>
+
+    <!-- PRODUCT DETAILS (shown only for products that have "details" in script.js) -->
+    <section class="container section" id="details-section" hidden>
+      <div class="section-head"><h2 id="details-title">Product details</h2></div>
+      <div id="details"></div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="container section">
+      <div class="trust">
+        <div class="trust-item"><span class="trust-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><div><strong>Delivery across India</strong><small>[Delivery time / free above ₹___]</small></div></div>
+        <div class="trust-item"><span class="trust-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><div><strong>Preview before you pay</strong><small>See your photo on every design</small></div></div>
+        <div class="trust-item"><span class="trust-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><div><strong>Secure payments</strong><small>UPI, cards, COD</small></div></div>
+        <div class="trust-item"><span class="trust-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><div><strong>Safe packaging</strong><small>Packed to arrive perfect</small></div></div>
+      </div>
+    </section>
+
+    <section class="container" style="padding-top: 24px">
+      <div class="info-grid">
+        <div class="info-card">
+          <h2 id="about-title">About this product</h2>
+          <p id="about-text"></p>
+        </div>
+        <div class="info-card">
+          <h2>FAQs</h2>
+          <details class="faq"><summary>What photo quality do I need?</summary><p>A clear, well-lit photo from a phone camera works well. Avoid screenshots.</p></details>
+          <details class="faq"><summary>Can I change the text on a design?</summary><p>Yes — type your name or message in the designer and the preview updates instantly.</p></details>
+          <details class="faq"><summary>How long does delivery take?</summary><p>[Your delivery time]</p></details>
+          <div id="extra-faqs"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- DESIGNER POP-UP -->
+  <dialog class="designer" id="designer" aria-labelledby="d-title">
+    <button type="button" class="designer-close" id="designer-close" aria-label="Close designer">×</button>
+    <div class="designer-inner">
+      <div class="designer-preview">
+        <div class="obj-stage" id="d-mockup"></div>
+        <div class="preview-note" id="d-preview-note">Live preview · your photo stays on your device</div>
+      </div>
+
+      <div class="designer-form">
+        <div>
+          <span class="pill" id="d-tag">Design</span>
+          <h2 id="d-title">Design</h2>
+          <div class="price-row">
+            <span class="big-price" id="d-price">₹0</span>
+            <span class="mrp" id="d-mrp" hidden></span>
+            <span style="font-size: 14px; color: var(--muted)">Inclusive of all taxes</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="option-label" id="d-type-label">Choose type</span>
+          <div class="chips d-groups" id="d-groups" role="group" aria-label="Choose a type" hidden></div>
+          <div class="size-grid" id="d-types"></div>
+          <div class="color-pick" id="d-colors" hidden></div>
+        </div>
+
+        <div>
+          <span class="option-label" id="d-photo-label">Upload your photo</span>
+          <label class="upload" id="d-upload" for="d-photo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0B5A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+            <b id="d-upload-title">Tap to upload photo</b>
+            <small id="d-upload-sub">JPG or PNG, high resolution recommended</small>
+          </label>
+          <input type="file" id="d-photo" accept="image/jpeg,image/png" class="sr-only">
+        </div>
+
+        <div>
+          <label class="option-label" for="d-text" id="d-text-label">Add a name or message</label>
+          <input class="text-input" id="d-text" type="text" maxlength="28">
+        </div>
+
+        <div id="d-extra-wrap" hidden>
+          <label class="option-label" for="d-extra" id="d-extra-label">Details</label>
+          <input class="text-input" id="d-extra" type="text" maxlength="40">
+        </div>
+
+        <div class="buy-row">
+          <div class="qty">
+            <button type="button" id="d-minus" aria-label="Decrease quantity">−</button>
+            <span id="d-qty" aria-live="polite">1</span>
+            <button type="button" id="d-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="button" class="btn btn-outline" id="d-cart">Add to cart</button>
+          <button type="button" class="btn btn-primary" id="d-buy">Buy now</button>
+        </div>
+        <div class="alert" id="d-alert" role="alert" hidden></div>
+
+        <div class="box">
+          <label for="d-pin" style="font-weight: 700; font-size: 15px">Check delivery</label>
+          <div class="pin-row">
+            <input id="d-pin" type="text" inputmode="numeric" maxlength="6" placeholder="Enter pincode">
+            <button type="button" id="d-pin-check">Check</button>
+          </div>
+          <div id="d-pin-result" style="font-size: 14px; font-weight: 600" aria-live="polite"></div>
+          <div class="ticks">
+            <span>✓ Preview before you pay</span><span>✓ UPI, cards &amp; COD</span><span>✓ Delivery across India</span><span>✓ Safe packaging</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="padding-top: 28px; border-top: 0">
+      <span>© <span id="year">2026</span> Customized Wale</span>
+      <span>[Phone] · [WhatsApp] · [Email]</span>
+    </div>
+  </footer>
+
+  <a class="wa-float wa-link" id="wa-float" data-msg="Hi Customized Wale, I have a question." href="#" aria-label="Chat with us on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
+  </a>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
