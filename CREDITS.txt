@@ -1,0 +1,23 @@
+Product photos used for the design mockups (cropped).
+All are from Unsplash and free to use under the Unsplash License
+(commercial use allowed, no attribution required): https://unsplash.com/license
+
+mug.jpg          https://images.unsplash.com/photo-1643946404043-178456b0e3f8
+frame.jpg        https://images.unsplash.com/photo-1640231026037-ffef7d41a14e
+clock.jpg        https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c
+album.jpg        https://images.unsplash.com/photo-1654124803533-a51f169e1971
+cushion.jpg      https://images.unsplash.com/photo-1629949008790-ca50382f7f98
+lamp.jpg         https://images.unsplash.com/photo-1637459562357-cc9b4544df49
+nameplate.jpg    https://images.unsplash.com/photo-1792085366387-a198e3a2705d
+tshirt.jpg       https://images.unsplash.com/photo-1651761179569-4ba2aa054997
+hoodie.jpg       https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77
+polo.jpg         https://images.unsplash.com/photo-1671438118097-479e63198629
+bottle-white.jpg https://images.unsplash.com/photo-1605714312496-01e90cb509cc
+bottle-silver.jpg https://images.unsplash.com/photo-1664714628878-9d2aa898b9e3
+travel-mug.jpg   https://images.unsplash.com/photo-1581157019452-2b854e1a020a
+../mousepad.jpg  https://images.unsplash.com/photo-1587749091716-f7b291a87f87
+../mobilecase.jpg https://images.unsplash.com/photo-1623393884989-cb3663e431c5
+
+Tip: replace any of these with a photo of your own product (same file name)
+for the most trustworthy look. If the new photo is framed differently, the
+"box" numbers for that product in script.js (PRODUCT_PAGES → photo) need updating.
